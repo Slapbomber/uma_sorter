@@ -1,5 +1,8 @@
+from get_page_info import get_page
+
+
 def main():
-    pass
+    get_page()
 
 
 
