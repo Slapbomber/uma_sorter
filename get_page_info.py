@@ -36,6 +36,23 @@ def get_char_soup(detail_url, browser):
     char_soup = BeautifulSoup(html, "html.parser")
     return char_soup
 
+def get_stat_headers(char_soup):
+    stat_grid = char_soup.find("div", class_="stat-grid")
+    if not stat_grid:
+        return None
+
+    head_tags = stat_grid.find_all("div", class_="stat-grid__head")
+
+    icons = []
+    for head in head_tags:
+        icon_tag = head.find("img", class_="stat-grid__icon")
+        icon_url = icon_tag.get("src") if icon_tag else None
+        if icon_url and icon_url.startswith("/"):
+            icon_url = f"{BASE_URL}{icon_url}"
+        icons.append(icon_url)
+
+    return icons
+
 def get_char_stats(char_soup):
     
 
@@ -85,6 +102,7 @@ def get_char_cards(soup):
         browser = p.chromium.launch()
 
         umas = []
+        stat_headers = None
 
         for card in cards[:2]:
             # png
@@ -105,6 +123,9 @@ def get_char_cards(soup):
             detail_url = urljoin(BASE_URL, relative_link)
             char_soup = get_char_soup(detail_url, browser)
 
+            if stat_headers is None:
+                stat_headers = get_stat_headers(char_soup)
+
             #stats
             stats = get_char_stats(char_soup)
 
@@ -118,5 +139,5 @@ def get_char_cards(soup):
 
         browser.close()
 
-    return umas
+    return umas, stat_headers
 
