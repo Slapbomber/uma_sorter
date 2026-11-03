@@ -8,35 +8,67 @@ class Uma:
         self.distance_aptitude = distance_aptitude
         self.style_aptitude = style_aptitude
 
-    def to_list(self):
-        return [
-            #Character details
+    def to_rows(self):
+        row1 = [
+            # Character details
             self.png, 
             self.name, 
-            self.title,
-            #Stats & growths
+            # Stat values
             self.stats.speed,
             self.stats.stamina,
             self.stats.power,
             self.stats.guts,
             self.stats.wit,
+           # Track aptitude
+            self.track_aptitude.turf,
+            self.track_aptitude.dirt,
+            # Distance aptitude
+            self.distance_aptitude.sprint,
+            self.distance_aptitude.mile,
+            self.distance_aptitude.medium,
+            self.distance_aptitude.long,
+        ]
+
+        row2 = [
+            # title
+            "",
+            self.title,
+            # Stat growths
             self.stats.speed_growth,
             self.stats.stamina_growth,
             self.stats.power_growth,
             self.stats.guts_growth,
             self.stats.wit_growth,
-            # Aptitudes
-            self.track_aptitude.turf,
-            self.track_aptitude.dirt,
-            self.distance_aptitude.sprint,
-            self.distance_aptitude.mile,
-            self.distance_aptitude.medium,
-            self.distance_aptitude.long,
+            "", "",
+            # Style aptitude
             self.style_aptitude.front,
             self.style_aptitude.pace,
             self.style_aptitude.late,
             self.style_aptitude.end,
-            ]
+        ]
+
+        return [row1, row2]
+
+    @staticmethod
+    def get_headers(stat_headers):
+        header_row1 = [
+            "Image",
+            "Name",
+            stat_headers[0], stat_headers[1], stat_headers[2], stat_headers[3], stat_headers[4],
+            "Turf",
+            "Dirt",
+            "Sprint", "Mile", "Medium", "Long",
+        ]
+
+        header_row2 = [
+            "",
+            "",
+            "", "", "", "", "",
+            "", "",
+            "Front", "Pace", "Late", "End",
+        ]
+
+        return [header_row1, header_row2]
 
 class Stats:
     def __init__(self, speed, stamina, power, guts, wit, speed_growth, stamina_growth, power_growth, guts_growth, wit_growth):
