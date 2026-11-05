@@ -104,7 +104,7 @@ def get_char_cards(soup):
         umas = []
         stat_headers = None
 
-        for card in cards[:2]:
+        for card in cards:
             # png
             img_tag = card.find("img", class_="character-icon")
             img_url = img_tag.get("src") if img_tag else None

@@ -27,6 +27,11 @@ class Uma:
             self.distance_aptitude.mile,
             self.distance_aptitude.medium,
             self.distance_aptitude.long,
+            # Style aptitude
+            self.style_aptitude.front,
+            self.style_aptitude.pace,
+            self.style_aptitude.late,
+            self.style_aptitude.end,
         ]
 
         row2 = [
@@ -39,36 +44,24 @@ class Uma:
             self.stats.power_growth,
             self.stats.guts_growth,
             self.stats.wit_growth,
-            "", "",
-            # Style aptitude
-            self.style_aptitude.front,
-            self.style_aptitude.pace,
-            self.style_aptitude.late,
-            self.style_aptitude.end,
+            "", "", "", "", "", "", "", "", "", "",
         ]
 
         return [row1, row2]
 
     @staticmethod
     def get_headers(stat_headers):
-        header_row1 = [
+        header_row = [
             "Image",
             "Name",
             stat_headers[0], stat_headers[1], stat_headers[2], stat_headers[3], stat_headers[4],
             "Turf",
             "Dirt",
             "Sprint", "Mile", "Medium", "Long",
-        ]
-
-        header_row2 = [
-            "",
-            "",
-            "", "", "", "", "",
-            "", "",
             "Front", "Pace", "Late", "End",
         ]
 
-        return [header_row1, header_row2]
+        return header_row
 
 class Stats:
     def __init__(self, speed, stamina, power, guts, wit, speed_growth, stamina_growth, power_growth, guts_growth, wit_growth):
