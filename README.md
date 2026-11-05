@@ -1,6 +1,6 @@
 # Uma-Sorter
 
-This is a practice project for a program that scrapes character info from (https://uma.guide/characters/) and then sorts and converts it into CSV file spreadsheet.
+This is a practice project for a program that scrapes character info from [Uma.guide](https://uma.guide/characters/) and then sorts and converts it into CSV file spreadsheet.
 
 ## How to Get
 
